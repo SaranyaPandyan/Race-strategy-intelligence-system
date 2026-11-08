@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSI | Race Control</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+<div class="brand"><span class="brand-mark">F1</span><span>RACE STRATEGY INTELLIGENCE</span></div>
+<div class="top-status"><span class="live-dot"></span><span id="systemStatus">SYSTEM READY</span></div>
+</header>
+
+<main class="dashboard-shell">
+<section class="hero-card">
+<div class="hero-copy">
+<div class="eyebrow">RACE CONTROL / STRATEGIC ANALYTICS</div>
+<h1 id="eventTitle">ITALIAN GRAND PRIX</h1>
+<div class="hero-meta"><span id="circuitName">MONZA</span><span>•</span><span id="raceProgress">0 / 0 LAPS</span><span>•</span><span id="trackStatus">TRACK STATUS 1</span></div>
+<div class="progress-track"><div id="raceProgressBar" class="progress-fill"></div></div>
+</div>
+<div class="hero-car"><img src="{{ url_for('static', filename='images/f1_car.png') }}" alt="Formula 1 race car"></div>
+</section>
+
+<section class="control-panel">
+<div>
+<label>RACE</label>
+<select id="raceSelect"><option value="2024|Monza">2024 • Monza • Race</option></select>
+</div>
+<div>
+<label>DRIVER</label>
+<select id="driverSelect"></select>
+</div>
+<button id="loadButton" class="primary-btn">LOAD RACE DATA</button>
+<div id="loadMessage" class="load-message"></div>
+</section>
+
+<section class="metrics-grid">
+<div class="metric-card"><span>POSITION</span><strong id="mPosition">—</strong><small id="mTeam">—</small></div>
+<div class="metric-card"><span>CURRENT LAP</span><strong id="mLap">—</strong><small id="mDistance">Race progress</small></div>
+<div class="metric-card"><span>LAP TIME</span><strong id="mLapTime">—</strong><small>Current recorded lap</small></div>
+<div class="metric-card"><span>BEST LAP</span><strong id="mBest">—</strong><small>Driver benchmark</small></div>
+<div class="metric-card"><span>COMPOUND</span><strong id="mCompound">—</strong><small id="mTyreAge">Tyre age —</small></div>
+<div class="metric-card"><span>PIT STOPS</span><strong id="mPits">—</strong><small>Recorded stops</small></div>
+</section>
+
+<section class="section-title"><div><span>01</span> DRIVER INTELLIGENCE</div><span id="driverIntelStatus">SELECTED DRIVER</span></section>
+<section class="table-card">
+<div class="table-wrap">
+<table>
+<thead><tr><th>POS</th><th>DRIVER</th><th>TEAM</th><th>LAP</th><th>LAP TIME</th><th>BEST</th><th>STINT</th><th>TYRE</th><th>AGE</th><th>PITS</th></tr></thead>
+<tbody id="driverTable"></tbody>
+</table>
+</div>
+</section>
+
+<section class="charts-grid">
+<div class="panel">
+<div class="panel-head"><div><span>02</span><h2>Lap Pace Evolution</h2></div><span id="paceLabel">—</span></div>
+<div id="lapChart" class="chart"></div>
+</div>
+<div class="panel">
+<div class="panel-head"><div><span>03</span><h2>Position Progression</h2></div><span>LOWER IS BETTER</span></div>
+<div id="positionChart" class="chart"></div>
+</div>
+</section>
+
+<section class="strategy-layout">
+<div class="panel strategy-main">
+<div class="panel-head"><div><span>04</span><h2>Strategy Intelligence</h2></div><span>ML + SIMULATION</span></div>
+<div class="strategy-banner"><div><span>RECOMMENDED STRATEGY</span><strong id="recommendation">—</strong></div><div class="confidence"><span>CONFIDENCE</span><strong id="confidence">—</strong></div></div>
+<div class="strategy-grid">
+<div><span>PIT WINDOW</span><strong id="pitWindow">—</strong></div>
+<div><span>TYRE RISK</span><strong id="tyreRisk">—</strong></div>
+<div><span>DEGRADATION</span><strong id="degradation">—</strong></div>
+<div><span>REMAINING</span><strong id="remainingLaps">—</strong></div>
+</div>
+<div id="strategyChart" class="chart strategy-chart"></div>
+</div>
+<div class="panel tyre-panel">
+<div class="panel-head"><div><span>05</span><h2>Tyre Intelligence</h2></div></div>
+<div class="tyre-ring"><div><strong id="tyreAgeBig">—</strong><span>LAPS</span></div></div>
+<div class="tyre-detail"><span>COMPOUND</span><strong id="tyreCompoundBig">—</strong></div>
+<div class="tyre-detail"><span>STINT AVG</span><strong id="stintAverage">—</strong></div>
+<div class="tyre-detail"><span>BASELINE</span><strong id="compoundBaseline">—</strong></div>
+</div>
+</section>
+
+<section class="section-title"><div><span>06</span> STRATEGY SIMULATION</div><span>ALTERNATIVE RACE PLANS</span></section>
+<section class="simulation-card">
+<div id="simulationRows"></div>
+</section>
+</main>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

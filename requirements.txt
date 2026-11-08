@@ -1,0 +1,7 @@
+Flask
+fastf1
+pandas
+numpy
+scikit-learn
+joblib
+plotly
